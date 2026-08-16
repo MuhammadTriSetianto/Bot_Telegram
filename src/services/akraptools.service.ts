@@ -13,7 +13,7 @@ export class AkrapToolsService {
             msisdn: msisdn
         });
 
-        console.log(members);
+        return members;
         
     }catch (err : any){
         console.log("ERROR:", err.message);

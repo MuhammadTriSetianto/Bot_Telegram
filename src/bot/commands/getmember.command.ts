@@ -1,6 +1,5 @@
 import { ApiService } from "../../services/api.service";
 import { MemberService } from "../../services/member.service";
-import type { Context } from "grammy";
 
 export const findMemberCommand = async (ctx: any) => {
   try {
