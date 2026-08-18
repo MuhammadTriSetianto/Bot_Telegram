@@ -1,4 +1,5 @@
 import { ApiService } from "../../services/api.service";
+import { CooldownService } from "../../services/cooldown.service";
 import { MemberService } from "../../services/member.service";
 
 export const startCommand = async (ctx : any) => {
@@ -37,7 +38,8 @@ const memberService = new MemberService(apiService);
 
   try {
     const  member : any = await memberService.getMember();
-    
+   
+
     const jumlahMember = member.data.length > 0 ? member.data.length : 0;
   
     await ctx.reply(

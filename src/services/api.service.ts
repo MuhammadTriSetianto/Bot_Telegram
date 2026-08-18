@@ -11,8 +11,8 @@ export class ApiService {
     },
   });
 
-  async get<T>(endpoint: string, timeout: number): Promise<T> {
-    const response = await this.axios.get<T>(endpoint, { timeout });
+  async get<T>(endpoint: string): Promise<T> {
+    const response = await this.axios.get<T>(endpoint,);
 
     return response.data;
   }
@@ -20,12 +20,10 @@ export class ApiService {
   async post<T>(
     endpoint: string,
     body: Record<string, any>,
-    timeout: number,
   ): Promise<T> {
     const response = await this.axios.post<T>(
       endpoint,
-      body,
-      { timeout }
+      body
     );
 
     return response.data;

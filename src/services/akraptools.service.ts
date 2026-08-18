@@ -1,4 +1,4 @@
-import type { InfoMemberResponse, MemberData } from "../model/akraptools.model";
+import type { InfoMemberResponse, MemberResponse } from "../model/akraptools.model";
 import type { ApiService } from "./api.service";
 
 export class AkrapToolsService {
@@ -10,8 +10,7 @@ export class AkrapToolsService {
         'akrab-family/member-info.php',
         {
             msisdn: msisdn
-        },
-        5000,
+        }
     );
         return members;
         
@@ -24,22 +23,51 @@ export class AkrapToolsService {
         }
     }
 
-    async addChangeMember () {
+    async addChangeMember (msisdn : string, parent_alias : string, slot_id : number, alias : string, member_msisdn : string) {
         
         try{
-            const member = await this.apiService.post<MemberData>("akrab-family/change-member.php" ,
+            const member = await this.apiService.post<MemberResponse>("akrab-family/change-member.php" ,
                 {
-                    msisdn: "087788194260",
-                    parent_alias: "Joko", // nama awal member
-                    slot_id: 1,
-                    alias : "Joko", // nama akhir member
-                    member_msisdn : "087788194260"
-                },
-                30000,
+                    msisdn: msisdn,
+                    parent_alias: parent_alias, 
+                    slot_id:   slot_id,
+                    alias : alias, 
+                    member_msisdn : member_msisdn
+                }
             );
+            return member
         } catch (err){
-            console.log(err)
+            console.error("Error add/change member:", err);
+            throw err;
         }
         }
-    
+    async  removeMember ( msisdn : string, family_member_id : string) {
+        try {
+            const member = await this.apiService.post<MemberResponse>("Takrab-family/remove-member.php" ,
+                {
+                    msisdn: msisdn,
+                    family_member_id: family_member_id
+                }
+            );
+            return member
+        } catch (err){
+            console.error("Error add/change member:", err);
+            throw err;
+        }
+    }
+
+    async setKouta ( msisdn : string, family_member_id : string, new_alloc_gb : number, original_bytes : number) {
+        try {
+            const member = await this.apiService.post<MemberResponse>("akrab-family/allocate-quota.php",{
+                msisdn: msisdn,
+                family_member_id: family_member_id,
+                new_alloc_gb: new_alloc_gb,
+                original_bytes: original_bytes
+            } );
+            return member
+        } catch (err){
+            console.error("Error add/change member:", err);
+            throw err;
+        }
+    }
 }

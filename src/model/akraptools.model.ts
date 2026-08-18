@@ -30,4 +30,11 @@ export interface MemberData{
     famlily_member_id: string;
     alias : string;
     member_msisdn : string ;
+    family_member_id : number,
+    original_bytes : number
+}
+
+export interface MemberResponse{
+    success : boolean;
+    data : MemberData;
 }

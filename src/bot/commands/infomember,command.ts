@@ -1,9 +1,10 @@
 import { AkrapToolsService } from "../../services/akrapTools.service";
 import { ApiService } from "../../services/api.service";
-
 export const akrapTools = async (ctx: any) => {
   try {
       const apiService = new ApiService();
+    
+      
       const akrapToolsService = new AkrapToolsService(apiService);
       
       const msisdn = ctx.message.text
@@ -14,13 +15,13 @@ export const akrapTools = async (ctx: any) => {
       await ctx.reply(
           "❌ Nomor belum dimasukkan.\n\n" +
           "Contoh:\n" +
-          "/infomember 087788194260"
+          "/infomember 0877xxxxxxx"
       );
       return;
     }
 
+  
     const members = await akrapToolsService.infoMember(msisdn);
-    console.log(members);
     if (!members.success) {
       await ctx.reply("❌ Data member tidak ditemukan.");
       return;
