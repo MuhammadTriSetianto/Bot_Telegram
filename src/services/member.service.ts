@@ -8,7 +8,8 @@ export class MemberService {
 
   async getMember() {
     const members = await this.apiService.get<MemberResponse>(
-      "list-token.php"
+      "list-token.php",
+      5000
     );
 
     return members;
@@ -20,7 +21,8 @@ export class MemberService {
         "getProfile.php",
         {
           msisdn: msisdn,
-        }
+        },
+        5000,
       );
       return member;
 

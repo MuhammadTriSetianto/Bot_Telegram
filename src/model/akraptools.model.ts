@@ -22,3 +22,12 @@ export interface Members{
     is_empty_slot: boolean;
 
 } 
+
+export interface MemberData{
+    msisdn : string;
+    parent_alias: string;
+    slot_id: number;
+    famlily_member_id: string;
+    alias : string;
+    member_msisdn : string ;
+}

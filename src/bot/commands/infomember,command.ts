@@ -1,4 +1,4 @@
-import { AkrapToolsService } from "../../services/akraptools.service";
+import { AkrapToolsService } from "../../services/akrapTools.service";
 import { ApiService } from "../../services/api.service";
 
 export const akrapTools = async (ctx: any) => {
